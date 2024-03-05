@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-
+const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -9,6 +9,11 @@ const PORT = process.env.PORT || 5000;
 mongoose.connect(
   "mongodb+srv://darpan9460:ETNgBc30N1PYzGXa@cluster0.gv2bjsl.mongodb.net/gaurav"
 );
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  next();
+});
 
 // Create Blog Schema
 const blogSchema = new mongoose.Schema({
